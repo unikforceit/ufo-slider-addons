@@ -114,7 +114,7 @@ class ufo_slider_addons extends Widget_Base
                 'label' => __('Info Color', 'ufo'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}.ufo-slider-item-wrapper .ufo-slider-content .ufo-slider-info' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}.ufo-slider-item-wrapper .ufo-slider-content .ufo-slider-info' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -124,7 +124,7 @@ class ufo_slider_addons extends Widget_Base
                 'label' => __('Toggle Info Color', 'ufo'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}.ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle-content' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}.ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle-content' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -133,7 +133,7 @@ class ufo_slider_addons extends Widget_Base
             [
                 'name' => 'items-backgroundt',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}.ufo-slider-item-wrapper',
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}}.ufo-slider-item-wrapper',
                 'fields_options' => [
                     'background' => [
                         'label' => esc_html__('Item Background', 'pixel-gallery'),
@@ -166,6 +166,18 @@ class ufo_slider_addons extends Widget_Base
                     [
                         'Slider-heading' => esc_html__('Setup is a breeze', 'ufo'),
                     ],
+                ],
+            ]
+        );
+        $this->add_control(
+            'change_animation',
+            [
+                'label' => esc_html__( 'Change Animation', 'textdomain' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'fade',
+                'options' => [
+                    'fade' => esc_html__( 'Fade', 'textdomain' ),
+                    'bottomup' => esc_html__( 'Bottom Up', 'textdomain' ),
                 ],
             ]
         );
@@ -280,17 +292,6 @@ class ufo_slider_addons extends Widget_Base
             ]
         );
         $this->add_control(
-            'plus',
-            [
-                'label' => esc_html__('Plus', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-plus-circle',
-                    'library' => 'fa-solid',
-                ],
-            ]
-        );
-        $this->add_control(
             'Prev',
             [
                 'label' => esc_html__('Prev', 'textdomain'),
@@ -310,6 +311,16 @@ class ufo_slider_addons extends Widget_Base
                     'value' => 'fas fa-arrow-right',
                     'library' => 'fa-solid',
                 ],
+            ]
+        );
+        $this->start_controls_tabs(
+            'style_tabsa'
+        );
+
+        $this->start_controls_tab(
+            'style_normal_taba',
+            [
+                'label' => esc_html__('Normal', 'textdomain'),
             ]
         );
         $this->add_control(
@@ -336,10 +347,48 @@ class ufo_slider_addons extends Widget_Base
                 ],
             ]
         );
+        $this->add_responsive_control(
+            'item-image-paddingn',
+            [
+                'label' => esc_html__('Nav Padding', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-section .swiper-button-next, {{WRAPPER}} .ufo-slider-section .swiper-button-prev' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'item-Image-Bordern',
+                'label' => __('Nav Border', 'textdomain'),
+                'selector' => '{{WRAPPER}} .ufo-slider-section .swiper-button-next, {{WRAPPER}} .ufo-slider-section .swiper-button-prev',
+            ]
+        );
+        $this->add_responsive_control(
+            'border-Image-radiusn',
+            [
+                'label' => esc_html__('Nav Border Radius', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-section .swiper-button-next, {{WRAPPER}} .ufo-slider-section .swiper-button-prev' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'style_hover_taba',
+            [
+                'label' => esc_html__('Hover', 'textdomain'),
+            ]
+        );
+
         $this->add_control(
             'navh_color',
             [
-                'label' => __('Nav Hover Color', 'ufo'),
+                'label' => __('Nav Color', 'ufo'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ufo-slider-section .swiper-button-next:hover, {{WRAPPER}} .ufo-slider-section .swiper-button-prev:hover' => 'color: {{VALUE}}',
@@ -355,11 +404,21 @@ class ufo_slider_addons extends Widget_Base
                 'selector' => '{{WRAPPER}} .ufo-slider-section .swiper-button-next:hover, {{WRAPPER}} .ufo-slider-section .swiper-button-prev:hover',
                 'fields_options' => [
                     'background' => [
-                        'label' => esc_html__('Slider Nav Hover', 'pixel-gallery'),
+                        'label' => esc_html__('Slider Nav', 'pixel-gallery'),
                     ],
                 ],
             ]
         );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'item-Image-Bordernh',
+                'label' => __('Nav Border', 'textdomain'),
+                'selector' => '{{WRAPPER}} .ufo-slider-section .swiper-button-next:hover, {{WRAPPER}} .ufo-slider-section .swiper-button-prev:hover',
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
         $this->end_controls_section();
         $this->start_controls_section(
             'content_stys',
@@ -368,6 +427,16 @@ class ufo_slider_addons extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         ); // start style section
+        $this->start_controls_tabs(
+            'style_tabs'
+        );
+
+        $this->start_controls_tab(
+            'style_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'textdomain'),
+            ]
+        );
         $this->add_control(
             'title_tag',
             [
@@ -382,16 +451,6 @@ class ufo_slider_addons extends Widget_Base
                     '5' => esc_html__( 'H5', 'textdomain' ),
                     '6' => esc_html__( 'H6', 'textdomain' ),
                 ],
-            ]
-        );
-        $this->start_controls_tabs(
-            'style_tabs'
-        );
-
-        $this->start_controls_tab(
-            'style_normal_tab',
-            [
-                'label' => esc_html__('Normal', 'textdomain'),
             ]
         );
         $this->add_control(
@@ -431,6 +490,16 @@ class ufo_slider_addons extends Widget_Base
             ]
         );
         $this->add_control(
+            'tttiaatt_color',
+            [
+                'label' => __('Toggle Title Color', 'ufo'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle-content .heading' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_control(
             'tttiaa_color',
             [
                 'label' => __('Toggle Info Color', 'ufo'),
@@ -443,9 +512,28 @@ class ufo_slider_addons extends Widget_Base
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
+                'name' => 'infotttypographytt',
+                'label' => __('Toggle Title Typography', 'ufo'),
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle-content .heading',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
                 'name' => 'infotttypography',
                 'label' => __('Toggle Info Typography', 'ufo'),
                 'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle-content',
+            ]
+        );
+        $this->add_control(
+            'show-shade',
+            [
+                'label' => esc_html__('Show Shade', 'ufo'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'ufo'),
+                'label_off' => esc_html__('Hide', 'ufo'),
+                'return_value' => 'shade',
+                'default' => 'shade',
             ]
         );
         $this->add_group_control(
@@ -453,7 +541,10 @@ class ufo_slider_addons extends Widget_Base
             [
                 'name' => 'before_bg',
                 'types' => [ 'gradient'],
-                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper:before',
+                'condition' => [
+                    'show-shade' => 'shade',
+                ],
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .shade.ufo-slider-image-wrapper:before',
                 'fields_options' => [
                     'background' => [
                         'label' => esc_html__('Top Shade', 'pixel-gallery'),
@@ -466,7 +557,10 @@ class ufo_slider_addons extends Widget_Base
             [
                 'name' => 'after_bg',
                 'types' => [ 'gradient'],
-                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper:after',
+                'condition' => [
+                    'show-shade' => 'shade',
+                ],
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .shade.ufo-slider-image-wrapper:after',
                 'fields_options' => [
                     'background' => [
                         'label' => esc_html__('Bottom Shade', 'pixel-gallery'),
@@ -670,14 +764,6 @@ class ufo_slider_addons extends Widget_Base
             'style_hover_tab',
             [
                 'label' => esc_html__('Hover', 'textdomain'),
-            ]
-        );
-        $this->add_control(
-            'hover_settings',
-            [
-                'label' => esc_html__( 'Hover Settings', 'textdomain' ),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
             ]
         );
         $this->add_control(
@@ -914,6 +1000,192 @@ class ufo_slider_addons extends Widget_Base
         );
         $this->end_controls_tab();
         $this->end_controls_tabs();
+
+        $this->start_controls_tabs(
+            'style_tabsav'
+        );
+
+        $this->start_controls_tab(
+            'style_normal_tabav',
+            [
+                'label' => esc_html__('Toggle Normal', 'textdomain'),
+            ]
+        );
+        $this->add_control(
+            'plus',
+            [
+                'label' => esc_html__('Plus', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-plus-circle',
+                    'library' => 'fa-solid',
+                ],
+            ]
+        );
+        $this->add_control(
+            'nav_colorv',
+            [
+                'label' => __('Color', 'ufo'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle svg' => 'fill: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'slidernav-backgroundv',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle',
+                'fields_options' => [
+                    'background' => [
+                        'label' => esc_html__('Background', 'pixel-gallery'),
+                    ],
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'item-image-paddingnv',
+            [
+                'label' => esc_html__('Padding', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'item-Image-Bordernv',
+                'label' => __('Border', 'textdomain'),
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle',
+            ]
+        );
+        $this->add_responsive_control(
+            'border-Image-radiusnv',
+            [
+                'label' => esc_html__('Border Radius', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'toggle_size',
+            [
+                'label' => esc_html__('Icon Size', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'toggle_x',
+            [
+                'label' => esc_html__('Toggle X', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'right: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'toggle_y',
+            [
+                'label' => esc_html__('Toggle Y', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'style_hover_tabav',
+            [
+                'label' => esc_html__('Toggle Hover', 'textdomain'),
+            ]
+        );
+
+        $this->add_control(
+            'navh_colorv',
+            [
+                'label' => __('Color', 'ufo'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle:hover svg' => 'fill: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'slidernav-backgroun-hoverdv',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle:hover',
+                'fields_options' => [
+                    'background' => [
+                        'label' => esc_html__('Background', 'pixel-gallery'),
+                    ],
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'item-Image-Bordernhv',
+                'label' => __('Border', 'textdomain'),
+                'selector' => '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle:hover',
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
         $this->end_controls_section();
 
     }

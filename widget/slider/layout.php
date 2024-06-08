@@ -23,8 +23,8 @@
             foreach ($slider as $slide){
             ?>
             <div class="swiper-slide">
-                <div class="ufo-slider-item-wrapper <?php echo 'elementor-repeater-item-'.$slide['_id'];?>">
-                    <div class="ufo-slider-image-wrapper">
+                <div class="ufo-slider-item-wrapper <?php echo $settings['change_animation'];?> <?php echo 'elementor-repeater-item-'.$slide['_id'];?>">
+                    <div class="ufo-slider-image-wrapper <?php echo $settings['show-shade'];?>">
                         <div class="ufo-slider-image">
                             <?php echo wp_get_attachment_image($slide['Slider-image']['id'], 'full');?>
                         </div>
@@ -48,7 +48,9 @@
         </div>
     </div>
     <?php if ($settings['navEnable']){?>
+    <div class="swiper-nav-wrapper">
     <div class="swiper-button-next"><?php \Elementor\Icons_Manager::render_icon( $settings['Next'], [ 'aria-hidden' => 'true' ] ); ?></div>
     <div class="swiper-button-prev"><?php \Elementor\Icons_Manager::render_icon( $settings['Prev'], [ 'aria-hidden' => 'true' ] ); ?></div>
+    </div>
     <?php }?>
 </div>

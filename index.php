@@ -2,7 +2,7 @@
 /*
 Plugin Name: UFO Slider Addons
 Description: A plugin to display WooCommerce products with category tabs.
-Version: 1.0
+Version: 1.1
 Author: UnikForce IT
 License: GPL2
 */

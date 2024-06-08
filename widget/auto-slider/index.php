@@ -305,6 +305,16 @@ class ufo_auto_slider_addons extends Widget_Base
                 ],
             ]
         );
+        $this->start_controls_tabs(
+            'style_tabsa'
+        );
+
+        $this->start_controls_tab(
+            'style_normal_taba',
+            [
+                'label' => esc_html__('Normal', 'textdomain'),
+            ]
+        );
         $this->add_control(
             'nav_color',
             [
@@ -329,10 +339,48 @@ class ufo_auto_slider_addons extends Widget_Base
                 ],
             ]
         );
+        $this->add_responsive_control(
+            'item-image-paddingn',
+            [
+                'label' => esc_html__('Nav Padding', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-auto-slider-section .swiper-button-next, {{WRAPPER}} .ufo-auto-slider-section .swiper-button-prev' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'item-Image-Bordern',
+                'label' => __('Nav Border', 'textdomain'),
+                'selector' => '{{WRAPPER}} .ufo-auto-slider-section .swiper-button-next, {{WRAPPER}} .ufo-auto-slider-section .swiper-button-prev',
+            ]
+        );
+        $this->add_responsive_control(
+            'border-Image-radiusn',
+            [
+                'label' => esc_html__('Nav Border Radius', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .ufo-auto-slider-section .swiper-button-next, {{WRAPPER}} .ufo-auto-slider-section .swiper-button-prev' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'style_hover_taba',
+            [
+                'label' => esc_html__('Hover', 'textdomain'),
+            ]
+        );
+
         $this->add_control(
             'navh_color',
             [
-                'label' => __('Nav Hover Color', 'ufo'),
+                'label' => __('Nav Color', 'ufo'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ufo-auto-slider-section .swiper-button-next:hover, {{WRAPPER}} .ufo-auto-slider-section .swiper-button-prev:hover' => 'color: {{VALUE}}',
@@ -348,11 +396,21 @@ class ufo_auto_slider_addons extends Widget_Base
                 'selector' => '{{WRAPPER}} .ufo-auto-slider-section .swiper-button-next:hover, {{WRAPPER}} .ufo-auto-slider-section .swiper-button-prev:hover',
                 'fields_options' => [
                     'background' => [
-                        'label' => esc_html__('Slider Nav Hover', 'pixel-gallery'),
+                        'label' => esc_html__('Slider Nav', 'pixel-gallery'),
                     ],
                 ],
             ]
         );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'item-Image-Bordernh',
+                'label' => __('Nav Border', 'textdomain'),
+                'selector' => '{{WRAPPER}} .ufo-auto-slider-section .swiper-button-next:hover, {{WRAPPER}} .ufo-auto-slider-section .swiper-button-prev:hover',
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
         $this->end_controls_section();
         $this->start_controls_section(
             'content_stya',
