@@ -1094,7 +1094,7 @@ class ufo_slider_addons extends Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle i' => 'font-size: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ufo-slider-item-wrapper .ufo-slider-image-wrapper .ufo-toggle svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
